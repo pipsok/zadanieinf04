@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private int liczbaPunktow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if(savedInstanceState!=null){
+    liczbaPunktow = savedInstanceState.getInt("POLUBIENIA");
+        }
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
@@ -49,5 +53,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("POLUBIENIA", liczbaPunktow);
     }
 }
